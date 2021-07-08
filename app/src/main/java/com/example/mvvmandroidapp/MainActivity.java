@@ -75,21 +75,6 @@ public class MainActivity extends AppCompatActivity {
         initRecyclerView();
     }
 
-//    private void initImageBitmaps(){
-//        Log.d(TAG, "initImageBitmaps: Preparing bitmaps");
-//        mAnimals = new ArrayList<>();
-//
-//        mAnimals.add(new Animal("Tiger", "https://i.natgeofe.com/n/6490d605-b11a-4919-963e-f1e6f3c0d4b6/sumatran-tiger-thumbnail-nationalgeographic_1456276.jpg"));
-//        mAnimals.add(new Animal("Dog","https://i.ytimg.com/vi/MPV2METPeJU/maxresdefault.jpg"));
-//        mAnimals.add(new Animal("Cat","https://cdn.britannica.com/22/206222-131-E921E1FB/Domestic-feline-tabby-cat.jpg"));
-//        mAnimals.add(new Animal("Elephant","https://c402277.ssl.cf1.rackcdn.com/photos/14206/images/hero_small/WW187785.jpg?1576774644"));
-//        mAnimals.add(new Animal("Giraffe","https://www.traveller.com.au/content/dam/images/h/1/p/q/1/k/image.related.articleLeadwide.620x349.h1pq27.png/1596176460724.jpg"));
-//        mAnimals.add(new Animal("Zebra","https://cdn.mos.cms.futurecdn.net/HjFE8NKWuCmgfHCcndJ3rK-1200-80.jpg"));
-//        mAnimals.add(new Animal("Fish","https://www.visitsealife.com/sydney/media/yfsfsugn/clownfish.jpg"));
-//
-//        initRecyclerView();
-//    }
-
     private void initRecyclerView(){
         Log.d(TAG, "initRecyclerView: Initialising");
         mRecylerAdapter = new RecyclerViewAdapter(this, mMainActivityViewModel.getAnimals().getValue());
