@@ -14,23 +14,24 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.mvvmandroidapp.R;
+import com.example.mvvmandroidapp.model.Animal;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
     private static final String TAG = "RecyclerViewAdapter";
 
-    private ArrayList<String> mImageNames = new ArrayList<>();
-    private ArrayList<String> mImages = new ArrayList<>();
+    private List<Animal> mAnimals;
     private Context mContext;
 
-    public RecyclerViewAdapter(Context mContext, ArrayList<String> mImageNames, ArrayList<String> mImages) {
-        this.mImageNames = mImageNames;
-        this.mImages = mImages;
+    public RecyclerViewAdapter(Context mContext, List<Animal> mAnimals) {
+        this.mAnimals = mAnimals;
         this.mContext = mContext;
     }
 
@@ -47,23 +48,24 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         Log.d(TAG, "onBindViewHolder: called.");
 
         // Insert image into the image view widget (from image url)
-        Glide.with(mContext).asBitmap().load(mImages.get(position)).into(holder.image);
+        RequestOptions defaultOption = new RequestOptions().error(R.drawable.ic_launcher_background);
+        Glide.with(mContext).setDefaultRequestOptions(defaultOption).load(mAnimals.get(position).getImageUrl()).into(holder.image);
 
-        holder.imageName.setText(mImageNames.get(position));
+        holder.imageName.setText(mAnimals.get(position).getName());
 
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: clicked on: " + mImageNames.get(position));
+                Log.d(TAG, "onClick: clicked on: " + mAnimals.get(position).getName());
 
-                Toast.makeText(mContext, "CLICKED", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, mAnimals.get(position).getName(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return mImageNames.size();
+        return mAnimals.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
